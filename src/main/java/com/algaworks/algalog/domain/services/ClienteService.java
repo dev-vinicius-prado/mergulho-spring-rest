@@ -36,8 +36,8 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
-    public boolean existeCliente(Long id) {
-        return clienteRepository.existsById(id);
+    public boolean naoExisteCliente(Long id) {
+        return !clienteRepository.existsById(id);
     }
 
     @Transactional
