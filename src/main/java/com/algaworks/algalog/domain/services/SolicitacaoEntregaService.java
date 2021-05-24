@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.Collection;
 
 @Service
 @AllArgsConstructor
@@ -17,6 +18,10 @@ public class SolicitacaoEntregaService {
 
     private final ClienteService clienteService;
     private final EntregaRepository entregaRepository;
+
+    public Collection<Entrega> listarEntregas() {
+        return entregaRepository.findAll();
+    }
 
     @Transactional
     public Entrega solicitar(Entrega entrega) {
