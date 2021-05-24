@@ -23,9 +23,12 @@ public class Entrega {
     @Embedded
     private Destinatario destinatario;
     @Enumerated(EnumType.STRING)
+    @Column(name = "status_entrega")
     private StatusEntrega statusEntrega;
     private BigDecimal taxa;
+    @Column(name = "data_pedido")
     private OffsetDateTime dataPedido;
+    @Column(name = "data_finalizacao")
     private OffsetDateTime dataFinalizacao;
 
 
