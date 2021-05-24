@@ -15,14 +15,18 @@ import java.time.ZoneOffset;
 @AllArgsConstructor
 public class SolicitacaoEntregaService {
 
+    private final ClienteService clienteService;
+    private final EntregaRepository entregaRepository;
+
     @Transactional
     public Entrega solicitar(Entrega entrega) {
+        var clienteEntrega = clienteService.buscar(entrega.getCliente().getId());
+
+        entrega.setCliente(clienteEntrega);
         entrega.setStatusEntrega(StatusEntrega.PENDENTE);
         entrega.setDataPedido(OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC));
         return entregaRepository.save(entrega);
     }
-
-    private final EntregaRepository entregaRepository;
 
 
 }
