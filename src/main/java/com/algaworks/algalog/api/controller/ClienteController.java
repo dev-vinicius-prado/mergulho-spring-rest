@@ -39,9 +39,8 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteResource> buscar(@PathVariable Long id) {
-        return clienteService.buscar(id)
-                .map(cliente -> ResponseEntity.ok(clienteMapper.toResource(cliente)))
-                .orElse(ResponseEntity.notFound().build());
+        var cliente = clienteService.buscar(id);
+        return ResponseEntity.ok(clienteMapper.toResource(cliente));
     }
 
     @GetMapping()

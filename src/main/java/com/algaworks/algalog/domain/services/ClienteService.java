@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -32,8 +31,10 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public Optional<Cliente> buscar(Long id) {
-        return clienteRepository.findById(id);
+    public Cliente buscar(Long id) {
+        return clienteRepository
+                .findById(id)
+                .orElseThrow(() -> new NegocioException("Cliente não encontrado."));
     }
 
     public boolean naoExisteCliente(Long id) {
