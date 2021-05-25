@@ -8,8 +8,6 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Getter
-
-
 @Setter
 public class EntregaResource {
 
