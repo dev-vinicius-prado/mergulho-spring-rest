@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.Collection;
 
 @Entity
 @Table(name = "entregas")
@@ -43,5 +44,17 @@ public class Entrega {
     @Column(name = "data_finalizacao")
     private OffsetDateTime dataFinalizacao;
 
+    @OneToMany(mappedBy = "entrega", cascade = CascadeType.ALL)
+    private Collection<Ocorrencia> ocorrencias;
 
+
+    public Ocorrencia adicionarOcorrencia(String descricao) {
+        var ocorrencia = new Ocorrencia();
+        ocorrencia.setDescricao(descricao);
+        ocorrencia.setDataRegistro(OffsetDateTime.now());
+        ocorrencia.setEntrega(this);
+        this.getOcorrencias().add(ocorrencia);
+
+        return ocorrencia;
+    }
 }
